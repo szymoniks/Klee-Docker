@@ -1,0 +1,73 @@
+diff --git src/parser/CVC.y src/parser/CVC.y
+index eaff116..350618f 100644
+--- src/parser/CVC.y
++++ src/parser/CVC.y
+@@ -22,7 +22,6 @@
+ #define YYMAXDEPTH 1048576000
+ #define YYERROR_VERBOSE 1
+ #define YY_EXIT_FAILURE -1
+-#define YYPARSE_PARAM AssertsQuery
+   
+   extern int cvclex(void);
+   extern char* yytext;
+@@ -32,9 +31,12 @@
+     FatalError("");
+     return YY_EXIT_FAILURE;
+   };
++  int yyerror(void* AssertsQuery, const char* s) { return yyerror(s); }
+   
+   %}
+ 
++%parse-param {void* AssertsQuery}
++
+ %union {
+ 
+   unsigned int uintval;                 /* for numerals in types. */
+diff --git src/parser/smtlib.y src/parser/smtlib.y
+index 2ac01e3..e7b0ea7 100644
+--- src/parser/smtlib.y
++++ src/parser/smtlib.y
+@@ -54,15 +54,17 @@
+     FatalError("");
+     return 1;
+   }
++  int yyerror(void* AssertsQuery, const char* s) { return yyerror(s); }
+ 
+   ASTNode query;
+ #define YYLTYPE_IS_TRIVIAL 1
+ #define YYMAXDEPTH 104857600
+ #define YYERROR_VERBOSE 1
+ #define YY_EXIT_FAILURE -1
+-#define YYPARSE_PARAM AssertsQuery
+   %}
+ 
++%parse-param {void* AssertsQuery}
++
+ %union {  
+   // FIXME: Why is this not an UNSIGNED int?
+   int uintval;                  /* for numerals in types. */
+diff --git src/parser/smtlib2.y src/parser/smtlib2.y
+index 2ac01e3..e7b0ea7 100644
+--- src/parser/smtlib2.y
++++ src/parser/smtlib2.y
+@@ -64,15 +64,17 @@
+     FatalError("");
+     return 1;
+   }
++  int yyerror(void* AssertsQuery, const char* s) { return yyerror(s); }
+ 
+   ASTNode querysmt2;
+   ASTVec assertionsSMT2;
+   vector<string> commands;
+ #define YYLTYPE_IS_TRIVIAL 1
+ #define YYMAXDEPTH 104857600
+ #define YYERROR_VERBOSE 1
+ #define YY_EXIT_FAILURE -1
+-#define YYPARSE_PARAM AssertsQuery
+   %}
+ 
++%parse-param {void* AssertsQuery}
++
+ %union {  
+   unsigned uintval;                  /* for numerals in types. */
+   //ASTNode,ASTVec
