@@ -1,3 +1,5 @@
+d41d8cd98f00b204e9800998ecf8427e  checksum
 00264ffca9d92eeac76ed3817960c3a7  Dockerfile
+18f78236c63dcf459701ac61a1f117fe  README.md
 32aa313480366865b307a4a88d952b10  stp-fix.patch
 3458d39a813eb0ec0e0225ccc35bc3ae  unistd-llvm-2.9-jit.patch
