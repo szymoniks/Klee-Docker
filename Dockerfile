@@ -154,3 +154,5 @@ RUN make -j5 unittests
 RUN make -j5 install
 
 ENV PATH $PATH:/home/klee/tools
+ENV C_INCLUDE_PATH $C_INCLUDE_PATH:/home/klee/include
+
