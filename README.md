@@ -3,7 +3,7 @@
 ## Intro
 Docker is a relatively recent technology that developers and sysadmins use to build, ship, and run distributed applications. Compared to virtual machines, docker is more lightweight and efficient, since it provides an additional layer of abstraction of operating-system-level virtualization. You can read more about it at https://www.docker.com/.
 
-## Pre-build image
+## Pre-built image
 
 One can pull the current compiled Docker image (https://registry.hub.docker.com/u/szymoniks/klee-docker/) by running:
 
