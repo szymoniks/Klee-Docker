@@ -87,8 +87,8 @@ RUN patch -p0 < /home/unistd-llvm-2.9-jit.patch
 WORKDIR llvm-2.9
 
 RUN ./configure --enable-optimized --enable-assertions
-RUN make -j5
-RUN make -j5 install
+RUN make
+RUN make install
 
 ENV PATH $PATH:/home/llvm-2.9/tools
 
@@ -115,7 +115,7 @@ WORKDIR stp-r940
 RUN patch -p0 < /home/stp-fix.patch
 
 RUN ./scripts/configure --with-prefix=`pwd`/install --with-cryptominisat2  
-RUN make -j5 OPTIMIZE=-O2 CFLAGS_M32= install
+RUN make OPTIMIZE=-O2 CFLAGS_M32= install
 
 RUN ulimit -s unlimited
 
@@ -131,7 +131,7 @@ RUN git clone https://github.com/klee/klee-uclibc.git
 WORKDIR klee-uclibc
 
 RUN ./configure --make-llvm-lib
-RUN make -j5
+RUN make
 
 
 
@@ -148,10 +148,10 @@ RUN git clone https://github.com/klee/klee.git
 WORKDIR klee
 
 RUN ./configure --with-llvm=/home/llvm-2.9 --with-stp=/home/stp-r940/install --with-uclibc=/home/klee-uclibc --enable-posix-runtime
-RUN make -j5 ENABLE_OPTIMIZED=1
-RUN make -j5 check
-RUN make -j5 unittests
-RUN make -j5 install
+RUN make ENABLE_OPTIMIZED=1
+RUN make check
+RUN make unittests
+RUN make install
 
 ENV PATH $PATH:/home/klee/tools
 ENV C_INCLUDE_PATH $C_INCLUDE_PATH:/home/klee/include
